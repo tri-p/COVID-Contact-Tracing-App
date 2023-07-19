@@ -1,12 +1,16 @@
 # PABUNA, KATRINA B. 
-# BSCPE 14
+# BSCPE 1-4
 
 # import tkinter
-import tkinter
+from tkinter import *
 
 # main window
-main = tkinter.Tk()
+main = Tk()
 main.title("COVID Contact Tracing App")
+main.geometry("500x200")
 
+# name
+name = Label(main, text = "Name:")
+name.place(x=50,y=50)
 
 main.mainloop()
