@@ -9,8 +9,5 @@ main = Tk()
 main.title("COVID Contact Tracing App")
 main.geometry("500x200")
 
-# name
-name = Label(main, text = "Name:")
-name.place(x=50,y=50)
-
+# ====== start ======
 main.mainloop()
