@@ -5,33 +5,22 @@
 from tkinter import *
 from tkinter import ttk
 
+import csv
+
 # main window
 class Application(Tk):
     def __init__(self):
         super().__init__()
         self.title("COVID Contact Tracing App")
         self.configure(bg="#B2BEB5")
-
-        # define the input widgets
-        def show_data():
-
-            # personal information
-            first_name = first_name_entry.get()
-            last_name = last_name_entry.get()
-
-            # COVID details; vax status
-            vax_status = self.vax_var.get()
-            
-            # COVID details; exposure
-            exp = self.exp_var.get()
-
-            # COVID details; test
-            test = self.test_var.get() 
-
-            print("First name:", first_name, "\nLast name:", last_name)
-            print("Vax Status:", vax_status)
-            print("Exposure:", exp)
-            print("Have you been tested?", test)
+    
+    # def add_entry function
+        def add_entry():
+            # open the csv file and write data
+                with open("details.csv", "a", newline="") as details:
+                    write = csv.writer(details)
+                    write.writerow([first_name_entry.get(), last_name_entry.get(),
+                                   self.vax_var.get(), self.exp_var.get(), self.test_var.get()])
 
     # create a frame inside a window
         widget = ttk.Frame(self)
@@ -105,7 +94,7 @@ class Application(Tk):
         test_rdbtn4.grid(row=10, column=0, padx=10, pady=(0, 5), sticky=EW)
 
     # add entry
-        submit_btn = ttk.Button(widget, text="Submit", command=show_data)
+        submit_btn = ttk.Button(widget, text="Submit", command=add_entry)
         submit_btn.grid(row=2, column=0, padx=20, pady=(0, 10))
 
         # search entry
