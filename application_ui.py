@@ -22,6 +22,28 @@ class Application(Tk):
                     write.writerow([first_name_entry.get(), last_name_entry.get(),
                                    self.vax_var.get(), self.exp_var.get(), self.test_var.get()])
 
+    # def search_btn function
+        def search_entry_window():
+            search_entry_window = Toplevel(self)
+            search_entry_window.title("COVID Details Search Window")
+            search_entry_window.configure(bg="#B2BEB5")
+
+            # frame for the search entry
+            search_widget = ttk.Frame(search_entry_window)
+            search_widget.pack(padx=20, pady=15)
+
+            # label for the search entry
+            search_label = ttk.Label(search_widget, text="Search Last Name:")
+            search_label.grid(row=0, column=0, padx=10, pady=5, sticky=EW)
+
+            # search entry box
+            search_entry = ttk.Entry(search_widget)
+            search_entry.grid(row=1, column=0, padx=10, pady=(0, 5))
+
+            # button for the search entry
+            search_btn = ttk.Button(search_widget, text="Search")
+            search_btn.grid(row=2, column=0, padx=10, pady=(0, 5))
+
     # create a frame inside a window
         widget = ttk.Frame(self)
         widget.pack(padx=20, pady=15)
@@ -97,4 +119,6 @@ class Application(Tk):
         submit_btn = ttk.Button(widget, text="Submit", command=add_entry)
         submit_btn.grid(row=2, column=0, padx=20, pady=(0, 10))
 
-        # search entry
+    # search entry
+        search_btn = ttk.Button(widget, text="Search", command=search_entry_window)
+        search_btn.grid(row=3, column=0, padx=20, pady=(0, 10))
