@@ -79,6 +79,8 @@ test_rdbtn4 = ttk.Radiobutton(covid_details, text="Yes - Pending", variable=test
 test_rdbtn4.grid(row=10, column=0, padx=10, pady=(0, 5), sticky=EW)
 
 # add entry
+submit_btn = ttk.Button(widget, text="Submit")
+submit_btn.grid(row=2, column=0, padx=20, pady=10)
 
 # create a frame for data
 # search entry
