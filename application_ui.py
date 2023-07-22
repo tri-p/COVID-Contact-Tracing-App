@@ -12,6 +12,27 @@ class Application(Tk):
         self.title("COVID Contact Tracing App")
         self.configure(bg="#B2BEB5")
 
+        # define the input widgets
+        def show_data():
+
+            # personal information
+            first_name = first_name_entry.get()
+            last_name = last_name_entry.get()
+
+            # COVID details; vax status
+            vax_status = self.vax_var.get()
+            
+            # COVID details; exposure
+            exp = self.exp_var.get()
+
+            # COVID details; test
+            test = self.test_var.get() 
+
+            print("First name:", first_name, "\nLast name:", last_name)
+            print("Vax Status:", vax_status)
+            print("Exposure:", exp)
+            print("Have you been tested?", test)
+
     # create a frame inside a window
         widget = ttk.Frame(self)
         widget.pack(padx=20, pady=15)
@@ -51,41 +72,40 @@ class Application(Tk):
         vax_opt.grid(row=1, column=0, padx=10, pady=(0, 10), sticky=EW)
 
         # exposure to COVID
-        exp_var = StringVar()
+        self.exp_var = StringVar(self)
 
         exposure_label = ttk.Label(covid_details, text="Have you had exposure to a probable or \nconfirmed case in the last 14 days?")
         exposure_label.grid(row=2, column=0, padx=10, sticky=EW)
 
-        exp_rdbtn1 = ttk.Radiobutton(covid_details, text="Yes", variable=exp_var, value="yes")
+        exp_rdbtn1 = ttk.Radiobutton(covid_details, text="Yes", variable=self.exp_var, value="Yes")
         exp_rdbtn1.grid(row=3, column=0, padx=10, sticky=EW)
 
-        exp_rdbtn2 = ttk.Radiobutton(covid_details, text="No", variable=exp_var, value="no")
+        exp_rdbtn2 = ttk.Radiobutton(covid_details, text="No", variable=self.exp_var, value="No")
         exp_rdbtn2.grid(row=4, column=0, padx=10, sticky=EW)
 
-        exp_rdbtn3 = ttk.Radiobutton(covid_details, text="Uncertain", variable=exp_var, value="uncertain")
+        exp_rdbtn3 = ttk.Radiobutton(covid_details, text="Uncertain", variable=self.exp_var, value="Uncertain")
         exp_rdbtn3.grid(row=5, column=0, padx=10, sticky=EW)
 
         # tested for COVID
-        test_var = StringVar()
+        self.test_var = StringVar(self)
 
         tested_label = ttk.Label(covid_details, text="Have you been tested for COVID-19\nin the last 14 days?")
         tested_label.grid(row=6, column=0, padx=10, pady=(10, 0), sticky=EW)
 
-        test_rdbtn1 = ttk.Radiobutton(covid_details, text="No", variable=test_var, value="no")
+        test_rdbtn1 = ttk.Radiobutton(covid_details, text="No", variable=self.test_var, value="No")
         test_rdbtn1.grid(row=7, column=0, padx=10, sticky=EW)
 
-        test_rdbtn2 = ttk.Radiobutton(covid_details, text="Yes - Positive", variable=test_var, value="yes_pos")
+        test_rdbtn2 = ttk.Radiobutton(covid_details, text="Yes - Positive", variable=self.test_var, value="Yes - Positive")
         test_rdbtn2.grid(row=8, column=0, padx=10, sticky=EW)
 
-        test_rdbtn3 = ttk.Radiobutton(covid_details, text="Yes - Negative", variable=test_var, value="yes_neg")
+        test_rdbtn3 = ttk.Radiobutton(covid_details, text="Yes - Negative", variable=self.test_var, value="Yes - Negative")
         test_rdbtn3.grid(row=9, column=0, padx=10, sticky=EW)
 
-        test_rdbtn4 = ttk.Radiobutton(covid_details, text="Yes - Pending", variable=test_var, value="yes_pen")
+        test_rdbtn4 = ttk.Radiobutton(covid_details, text="Yes - Pending", variable=self.test_var, value="Yes - Pending")
         test_rdbtn4.grid(row=10, column=0, padx=10, pady=(0, 5), sticky=EW)
 
     # add entry
-        submit_btn = ttk.Button(widget, text="Submit")
+        submit_btn = ttk.Button(widget, text="Submit", command=show_data)
         submit_btn.grid(row=2, column=0, padx=20, pady=(0, 10))
 
-        # create a frame for data
         # search entry
