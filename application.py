@@ -43,7 +43,7 @@ vax_label.grid(row=0, column=0, padx=10, pady=(5, 0), sticky=EW)
 
 vax_combobox = ttk.Combobox(covid_details, values=vax_status_list)
 vax_combobox.current(2)
-vax_combobox.grid(row=1, column=0, padx=10, pady=(0, 5), sticky=EW)
+vax_combobox.grid(row=1, column=0, padx=10, pady=(0, 10), sticky=EW)
 
 # exposure to COVID
 exp_var = StringVar()
@@ -59,6 +59,24 @@ exp_rdbtn2.grid(row=4, column=0, padx=10, sticky=EW)
 
 exp_rdbtn3 = ttk.Radiobutton(covid_details, text="Uncertain", variable=exp_var, value="uncertain")
 exp_rdbtn3.grid(row=5, column=0, padx=10, sticky=EW)
+
+# tested for COVID
+test_var = StringVar()
+
+tested_label = ttk.Label(covid_details, text="Have you been tested for COVID-19\nin the last 14 days?")
+tested_label.grid(row=6, column=0, padx=10, pady=(10, 0), sticky=EW)
+
+test_rdbtn1 = ttk.Radiobutton(covid_details, text="No", variable=test_var, value="no")
+test_rdbtn1.grid(row=7, column=0, padx=10, sticky=EW)
+
+test_rdbtn2 = ttk.Radiobutton(covid_details, text="Yes - Positive", variable=test_var, value="yes_pos")
+test_rdbtn2.grid(row=8, column=0, padx=10, sticky=EW)
+
+test_rdbtn3 = ttk.Radiobutton(covid_details, text="Yes - Negative", variable=test_var, value="yes_neg")
+test_rdbtn3.grid(row=9, column=0, padx=10, sticky=EW)
+
+test_rdbtn4 = ttk.Radiobutton(covid_details, text="Yes - Pending", variable=test_var, value="yes_pen")
+test_rdbtn4.grid(row=10, column=0, padx=10, pady=(0, 5), sticky=EW)
 
 # add entry
 
