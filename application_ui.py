@@ -17,10 +17,16 @@ class Application(Tk):
     # def add_entry function
         def add_entry():
             # open the csv file and write data
-                with open("details.csv", "a", newline="") as details:
-                    write = csv.writer(details)
-                    write.writerow([first_name_entry.get(), last_name_entry.get(),
-                                   self.vax_var.get(), self.exp_var.get(), self.test_var.get()])
+            with open("details.csv", "a", newline="") as details:
+                write = csv.writer(details)
+                write.writerow([first_name_entry.get(), last_name_entry.get(),
+                                self.vax_var.get(), self.exp_var.get(), self.test_var.get()])
+
+            first_name_entry.delete(0, END)
+            last_name_entry.delete(0, END)
+            self.vax_var.set("")
+            self.exp_var.set("")
+            self.test_var.set("")   
 
     # def search_btn function
         def search_entry_window():
@@ -71,7 +77,7 @@ class Application(Tk):
         covid_details.grid(row=1, column=0, padx=20, pady=(0, 10))
 
         # vaccination status
-        vax_status_list = ["Not Vaccinated", "Vaccinated - 1st Dose", "Vaccinated - 2nd Dose", 
+        vax_status_list = ["(Select Vaccination Status)", "Not Vaccinated", "Vaccinated - 1st Dose", "Vaccinated - 2nd Dose", 
                            "Vaccinated - 1st Booster", "Vaccinated - 2nd Booster"]
         self.vax_var = StringVar(self)
 
