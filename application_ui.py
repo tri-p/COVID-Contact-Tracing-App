@@ -24,7 +24,7 @@ class Application(Tk):
 
             first_name_entry.delete(0, END)
             last_name_entry.delete(0, END)
-            self.vax_var.set("")
+            self.vax_var.set("(Select Vaccination Status)")
             self.exp_var.set("")
             self.test_var.set("")   
 
@@ -50,30 +50,6 @@ class Application(Tk):
             # button for the search entry
             search_btn = ttk.Button(search_widget, text="Search")
             search_btn.grid(row=2, column=0, padx=10, pady=(0, 5))
-
-        # open the csv file and read data
-            with open("details.csv", "r") as file:
-                csv_reader = csv.reader(file)
-                header = []
-                header = next(csv_reader)
-                row_set = [row for row in csv_reader]
-            
-        # create a treeview to show the entries
-            details_trv = ttk.Treeview(search_entry_window, selectmode=BROWSE)
-            details_trv.grid(row=1, column=0, padx=20, pady=(0, 15))
-            details_trv['height'] = 5
-            details_trv['show'] = 'headings'
-            details_trv['columns'] = header
-
-            # treeview configure
-            for item in header:
-                details_trv.column(item, width=140, anchor=CENTER)
-                details_trv.heading(item, text=item)
-            
-            # importing the values from the csv file
-            for detail in row_set:
-                detail_list = [r for r in detail]
-                details_trv.insert("", END, iid=detail_list[0], values=detail_list)
 
     # create a frame inside a window
         widget = ttk.Frame(self)
