@@ -37,7 +37,7 @@ class Application(Tk):
 
             # frame for the search entry
             search_widget = ttk.Frame(search_entry_window)
-            search_widget.pack(padx=20, pady=15)
+            search_widget.grid(row=0, column=0, padx=20, pady=15)
 
             # label for the search entry
             search_label = ttk.Label(search_widget, text="Search Last Name:")
@@ -57,9 +57,23 @@ class Application(Tk):
                 header = []
                 header = next(csv_reader)
                 row_set = [row for row in csv_reader]
+            
+        # create a treeview to show the entries
+            details_trv = ttk.Treeview(search_entry_window, selectmode=BROWSE)
+            details_trv.grid(row=1, column=0, padx=20, pady=(0, 15))
+            details_trv['height'] = 5
+            details_trv['show'] = 'headings'
+            details_trv['columns'] = header
 
-                print(header)
-                print(row_set)
+            # treeview configure
+            for item in header:
+                details_trv.column(item, width=140, anchor=CENTER)
+                details_trv.heading(item, text=item)
+            
+            # importing the values from the csv file
+            for detail in row_set:
+                detail_list = [r for r in detail]
+                details_trv.insert("", END, iid=detail_list[0], values=detail_list)
 
     # create a frame inside a window
         widget = ttk.Frame(self)
