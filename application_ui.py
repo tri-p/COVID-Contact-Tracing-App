@@ -30,6 +30,7 @@ class Application(Tk):
 
     # def search_btn function
         def search_entry_window():
+        # create new window when searching for an entry
             search_entry_window = Toplevel(self)
             search_entry_window.title("COVID Details Search Window")
             search_entry_window.configure(bg="#B2BEB5")
@@ -49,6 +50,16 @@ class Application(Tk):
             # button for the search entry
             search_btn = ttk.Button(search_widget, text="Search")
             search_btn.grid(row=2, column=0, padx=10, pady=(0, 5))
+
+        # open the csv file and read data
+            with open("details.csv", "r") as file:
+                csv_reader = csv.reader(file)
+                header = []
+                header = next(csv_reader)
+                row_set = [row for row in csv_reader]
+
+                print(header)
+                print(row_set)
 
     # create a frame inside a window
         widget = ttk.Frame(self)
