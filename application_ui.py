@@ -34,6 +34,11 @@ class Application(Tk):
     # def search_btn function
         def search_entry_window():
 
+            # def exit_btn function
+            def exit_btn_func():
+                search_entry.delete(0, END)
+                search_entry_window.destroy()
+
             # def search_entry function
             def search_entry_func():
                 with open("details.csv") as file:
@@ -99,6 +104,10 @@ class Application(Tk):
             # button for the search entry
             search_btn = ttk.Button(search_widget, text="Search", command=search_entry_func)
             search_btn.grid(row=2, column=0, padx=10, pady=(0, 5))
+
+            # exit button to exit search window
+            exit_btn = ttk.Button(search_entry_window, text="Exit", command=exit_btn_func)
+            exit_btn.grid(row=2, column=0, padx=20, pady=(0, 15))
 
     # create a frame inside a window
         widget = ttk.Frame(self)
