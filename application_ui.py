@@ -19,9 +19,12 @@ class Application(Tk):
             # open the csv file and write data
             with open("details.csv", "a", newline="") as details:
                 write = csv.writer(details)
-                write.writerow([first_name_entry.get(), last_name_entry.get(),
+                '''.capitalize() allows the user to input in any format in the name entry 
+                and the program will get the data with auto-capitalized first letter'''
+                write.writerow([first_name_entry.get().capitalize(), last_name_entry.get().capitalize(),
                                 self.vax_var.get(), self.exp_var.get(), self.test_var.get()])
 
+            # clearing the 
             first_name_entry.delete(0, END)
             last_name_entry.delete(0, END)
             self.vax_var.set("(Select Vaccination Status)")
@@ -30,6 +33,52 @@ class Application(Tk):
 
     # def search_btn function
         def search_entry_window():
+
+            # def search_entry function
+            def search_entry_func():
+                with open("details.csv") as file:
+                    name = search_entry.get()
+                    data = []
+
+                    csv_reader = csv.reader(file)
+                    for row in csv_reader:
+                        data.append(row)
+
+                    row_set = []
+                    row_set = [row[1].lower() for row in data]
+
+                    for row in range(0, len(data)):
+                        for item in row_set:
+                            if name.lower() == data[row][1].lower(): # allows the user to type in lowercase
+
+                                # creating a frame to display the searched entry
+                                disp_frame = ttk.Frame(search_entry_window)
+                                disp_frame.grid(row=1, column=0, padx=20, pady=(0, 15))
+
+                                disp_fname = ttk.Label(disp_frame, text="First Name: " + str(data[row][0]))
+                                disp_fname.grid(row=0, column=0, padx=20)
+
+                                disp_lname = ttk.Label(disp_frame, text="Last Name: " + str(data[row][1]))
+                                disp_lname.grid(row=1, column=0, padx=20)
+
+                                disp_vax = ttk.Label(disp_frame, text="Vaccination Status: " + str(data[row][2]))
+                                disp_vax.grid(row=2, column=0, padx=20)
+                                        
+                                disp_exp = ttk.Label(disp_frame, text="Exposure to COVID: " + str(data[row][3]))
+                                disp_exp.grid(row=3, column=0, padx=20)
+
+                                disp_test = ttk.Label(disp_frame, text="Tested for COVID: " + str(data[row][4]))
+                                disp_test.grid(row=4, column=0, padx=20)
+
+                            # creating a frame when no result is found
+                            elif name == "" or name not in row_set:
+
+                                disp_error = ttk.Frame(search_entry_window)
+                                disp_error.grid(row=1, column=0, padx=20, pady=(0, 15))
+
+                                disp_error = ttk.Label(disp_error, text="No result found")
+                                disp_error.grid(row=0, column=0, padx=20, pady=10)
+
         # create new window when searching for an entry
             search_entry_window = Toplevel(self)
             search_entry_window.title("COVID Details Search Window")
@@ -48,7 +97,7 @@ class Application(Tk):
             search_entry.grid(row=1, column=0, padx=10, pady=(0, 5))
 
             # button for the search entry
-            search_btn = ttk.Button(search_widget, text="Search")
+            search_btn = ttk.Button(search_widget, text="Search", command=search_entry_func)
             search_btn.grid(row=2, column=0, padx=10, pady=(0, 5))
 
     # create a frame inside a window
