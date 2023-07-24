@@ -17,7 +17,7 @@ The COVID Contact Tracing App is an application written in Python that allows th
 1. Install Python on your computer to run the code. You can download it here: https://www.python.org/downloads/
 2. Open the software and make three separate files just like in the repository. Paste the code from the three files.
 3. Save the files with a .py extension and a .csv extension for the CSV file.
-4. You can delete the list on your CSV file. Make sure that it is comma-separated and it matches the columns
+4. You can delete the list on your CSV file and input your own set of data. Make sure that it is comma-separated and it matches the columns in the file.
 5. Run the file main_app.py. A GUI will appear.
 6. You may input your personal information on the entry boxes and enter the COVID-related questions that are asked.
 7. On the right side of the GUI, there are four commands you can do: Clear, Submit, Search, Exit
