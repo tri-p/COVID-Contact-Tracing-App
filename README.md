@@ -4,7 +4,7 @@
 The COVID Contact Tracing App is an application written in Python that allows the user to input their personal information and COVID details. The program allows the user to search for an entry with the surname of the person they are looking for, and the details they entered will appear on the window. The program uses the GUI Tkinter to make the application. OOP was also implemented in this project to easily modify the files simultaneously.
 
 ### Files in making the app
-- application.py
+- application_ui.py
   > Contains all the code for the application.
 
 - details.csv
